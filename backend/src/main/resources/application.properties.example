@@ -24,17 +24,22 @@ spring.flyway.enabled=true
 app.jwt.secreto=
 app.jwt.expiracion-minutos=120
 
-# --- Correo (en el VPS: Postfix en localhost:25) ---
+# --- Correo (en el VPS: Postfix en localhost:25 reenvia por el SMTP del dominio) ---
+# En local dejar app.mail.habilitado=false: los correos solo se escriben en el log
+app.mail.habilitado=false
 spring.mail.host=localhost
 spring.mail.port=25
-app.mail.remitente=
+app.mail.remitente=Taza Ideal <no-reply@tazaideal.online>
 
-# --- Twilio (SMS y WhatsApp) ---
+# --- Twilio (SMS y WhatsApp). En local: habilitado=false (solo log) ---
 app.twilio.habilitado=false
 app.twilio.account-sid=
 app.twilio.auth-token=
 app.twilio.numero-sms=
-app.twilio.numero-whatsapp=
+# Sandbox de WhatsApp de Twilio (o tu numero aprobado), con el prefijo whatsapp:
+app.twilio.numero-whatsapp=whatsapp:+14155238886
+# Telefonos guardados con 10 digitos se envian como +52XXXXXXXXXX
+app.twilio.prefijo-pais=+52
 
 # --- Fotos de productos ---
 app.uploads.dir=uploads
