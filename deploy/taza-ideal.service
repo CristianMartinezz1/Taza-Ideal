@@ -1,0 +1,25 @@
+# Servicio systemd del backend de Taza Ideal
+# Se instala con:  sudo cp deploy/taza-ideal.service /etc/systemd/system/
+#                  sudo systemctl daemon-reload && sudo systemctl enable --now taza-ideal
+[Unit]
+Description=Taza Ideal API (Spring Boot)
+After=network.target mysql.service
+Wants=mysql.service
+
+[Service]
+User=tazaideal
+Group=tazaideal
+WorkingDirectory=/opt/taza-ideal
+# Puerto 8085: el unico libre en el VPS (los demas los usan otras actividades).
+# application.properties con las credenciales reales vive solo en el servidor, nunca en GitHub.
+ExecStart=/usr/bin/java -Xms256m -Xmx512m -Duser.timezone=America/Mexico_City \
+  -jar /opt/taza-ideal/taza-ideal.jar \
+  --server.port=8085 \
+  --server.address=127.0.0.1 \
+  --spring.config.additional-location=file:/opt/taza-ideal/application.properties
+SuccessExitStatus=143
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
