@@ -1,0 +1,8 @@
+# Archivos que se usan en el VPS (Linux): siempre con saltos de linea LF,
+# aunque se clonen en Windows. systemd y nginx fallan con CRLF.
+deploy/*.service  text eol=lf
+deploy/*.conf     text eol=lf
+deploy/*.sql      text eol=lf
+deploy/*.example  text eol=lf
+database/*.sql    text eol=lf
+*.sh              text eol=lf
