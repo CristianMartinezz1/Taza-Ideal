@@ -42,3 +42,6 @@ spring.servlet.multipart.max-file-size=2MB
 
 # --- CORS (frontend de Vite en local) ---
 app.cors.origenes=http://localhost:5173
+
+# --- URL del frontend (para el enlace de recuperar contrasena) ---
+app.frontend.url=http://localhost:5173
