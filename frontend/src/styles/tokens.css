@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --cafe: #6F4E37;
+  --caramelo: #D98A3D;
+  --verde-azulado: #2F6F6A;
+  --crema: #FFF8EE;
+  --crema-oscura: #F3E7D6;
+  --chocolate: #2B1D14;
+  --rojo: #B3261E;
+  --verde: #2E7D4F;
+
+  --font-principal: 'Inter', system-ui, -apple-system, sans-serif;
+  --radio-control: 4px;
+  --radio-tarjeta: 6px;
+  --sombra-suave: 0 2px 8px rgba(43, 29, 20, 0.08);
+}
