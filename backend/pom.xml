@@ -163,6 +163,17 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- El application.properties local (con contrasenas) NO se mete al JAR:
+			     en el VPS se usa /opt/taza-ideal/application.properties -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>application.properties</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
