@@ -19,6 +19,7 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
     Optional<Pedido> findConDetalleById(Long id);
 
     /** "Mis pedidos" del cliente, del mas reciente al mas antiguo. */
+    @EntityGraph(attributePaths = "usuario")
     @Query("""
             SELECT p FROM Pedido p
             WHERE p.usuario.id = :usuarioId
