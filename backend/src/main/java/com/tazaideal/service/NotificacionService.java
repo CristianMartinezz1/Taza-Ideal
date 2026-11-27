@@ -1,5 +1,6 @@
 package com.tazaideal.service;
 
+import com.tazaideal.model.Pedido;
 import com.tazaideal.model.Usuario;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,18 @@ public class NotificacionService {
     /** Correo con el codigo de 6 digitos para verificar la cuenta. */
     public void enviarCodigoVerificacion(Usuario usuario, String codigo) {
         log.info("[CORREO] Para {}: tu código de verificación de Taza Ideal es {}", usuario.getCorreo(), codigo);
+    }
+
+    /** Correo de confirmacion cuando el cliente hace un pedido. */
+    public void pedidoRecibido(Pedido pedido) {
+        log.info("[CORREO] Para {}: recibimos tu pedido {} por ${}", pedido.getUsuario().getCorreo(),
+                pedido.getCodigo(), pedido.getTotal());
+    }
+
+    /** SMS y WhatsApp cuando el barista marca el pedido como LISTO. */
+    public void pedidoListo(Pedido pedido) {
+        log.info("[SMS + WHATSAPP] Para {}: tu pedido {} está listo para recoger",
+                pedido.getUsuario().getTelefono(), pedido.getCodigo());
     }
 
     /** Correo con el enlace para restablecer la contrasena. */
