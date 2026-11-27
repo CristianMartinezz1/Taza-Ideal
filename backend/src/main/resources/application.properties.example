@@ -39,6 +39,10 @@ app.twilio.numero-whatsapp=
 # --- Fotos de productos ---
 app.uploads.dir=uploads
 spring.servlet.multipart.max-file-size=2MB
+spring.servlet.multipart.max-request-size=3MB
+
+# --- Paginacion: maximo de elementos por pagina ---
+spring.data.web.pageable.max-page-size=50
 
 # --- CORS (frontend de Vite en local) ---
 app.cors.origenes=http://localhost:5173

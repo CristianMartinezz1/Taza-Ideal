@@ -4,7 +4,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.hibernate.query.sqm.PathElementException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
+import org.springframework.data.core.PropertyReferenceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -84,6 +87,26 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<ErrorResponse> faltaParametro(MissingServletRequestParameterException ex, HttpServletRequest req) {
         return responder(HttpStatus.BAD_REQUEST, "Falta el parámetro '" + ex.getParameterName() + "'", req, null);
+    }
+
+    /** Por ejemplo ?sort=campoQueNoExiste en un listado paginado. */
+    @ExceptionHandler(PropertyReferenceException.class)
+    public ResponseEntity<ErrorResponse> ordenInvalido(PropertyReferenceException ex, HttpServletRequest req) {
+        return responder(HttpStatus.BAD_REQUEST, "No se puede ordenar por '" + ex.getPropertyName() + "'", req, null);
+    }
+
+    /**
+     * Con consultas @Query el campo de orden invalido lo detecta Hibernate (PathElementException).
+     * Cualquier otro mal uso de la capa de datos es un error del servidor (500).
+     */
+    @ExceptionHandler(InvalidDataAccessApiUsageException.class)
+    public ResponseEntity<ErrorResponse> usoDatos(InvalidDataAccessApiUsageException ex, HttpServletRequest req) {
+        for (Throwable t = ex; t != null; t = t.getCause()) {
+            if (t instanceof PathElementException) {
+                return responder(HttpStatus.BAD_REQUEST, "No se puede ordenar por ese campo", req, null);
+            }
+        }
+        return inesperado(ex, req);
     }
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
