@@ -47,6 +47,8 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
                         @Param("hasta") LocalDateTime hasta,
                         Pageable pageable);
 
+    boolean existsByUsuarioId(Long usuarioId);
+
     /** Numero mas alto usado en los codigos TI-xxxx, para generar el siguiente. */
     @Query("SELECT COALESCE(MAX(p.id), 0) FROM Pedido p")
     long maxId();
