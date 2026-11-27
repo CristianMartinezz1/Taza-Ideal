@@ -1,0 +1,28 @@
+info:
+  name: Mis Pedidos
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{baseUrl}}/pedidos/mios?estado=&page=0&size=10"
+  params:
+    - name: estado
+      value: ""
+      type: query
+    - name: page
+      value: "0"
+      type: query
+    - name: size
+      value: "10"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

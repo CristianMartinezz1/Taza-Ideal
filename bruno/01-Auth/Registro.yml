@@ -1,0 +1,26 @@
+info:
+  name: Registro
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/registro"
+  body:
+    type: json
+    data: |-
+      {
+        "nombre": "Cliente Prueba",
+        "correo": "cliente@tazaideal.com",
+        "contrasena": "Cliente#2026",
+        "telefono": "9511234567",
+        "aceptaTerminos": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

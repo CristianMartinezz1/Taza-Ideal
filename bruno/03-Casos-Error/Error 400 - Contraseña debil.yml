@@ -1,0 +1,25 @@
+info:
+  name: Error 400 - Contraseña debil
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/registro"
+  body:
+    type: json
+    data: |-
+      {
+        "nombre": "Prueba Invalida",
+        "correo": "invalido@tazaideal.com",
+        "contrasena": "123",
+        "telefono": "9511234567",
+        "aceptaTerminos": true
+      }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

@@ -1,0 +1,29 @@
+info:
+  name: Enviar Encuesta
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/encuesta"
+  body:
+    type: json
+    data: |-
+      {
+        "temperatura": "caliente",
+        "sabor": "dulce",
+        "leche": "si",
+        "intensidad": "suave",
+        "chocolate": "no",
+        "momento": "tarde"
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
