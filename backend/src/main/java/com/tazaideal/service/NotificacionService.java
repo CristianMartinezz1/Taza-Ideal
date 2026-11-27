@@ -2,39 +2,74 @@ package com.tazaideal.service;
 
 import com.tazaideal.model.Pedido;
 import com.tazaideal.model.Usuario;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionSynchronization;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
+
+import java.util.List;
 
 /**
- * Avisos al usuario (correo, SMS y WhatsApp).
- * Por ahora solo los escribe en el log; el issue de notificaciones
- * conecta el envio real (JavaMailSender + Twilio) sin cambiar a quien lo llama.
+ * Decide que aviso mandar y con que datos. El envio real lo hace CanalesEnvio en otro hilo.
+ *
+ * Los datos se copian aqui (dentro de la transaccion) y el envio se programa para DESPUES
+ * del commit: si la operacion falla y se revierte, no se manda ningun aviso.
  */
 @Service
 public class NotificacionService {
 
-    private static final Logger log = LoggerFactory.getLogger(NotificacionService.class);
+    private final CanalesEnvio canales;
+
+    public NotificacionService(CanalesEnvio canales) {
+        this.canales = canales;
+    }
 
     /** Correo con el codigo de 6 digitos para verificar la cuenta. */
     public void enviarCodigoVerificacion(Usuario usuario, String codigo) {
-        log.info("[CORREO] Para {}: tu código de verificación de Taza Ideal es {}", usuario.getCorreo(), codigo);
-    }
-
-    /** Correo de confirmacion cuando el cliente hace un pedido. */
-    public void pedidoRecibido(Pedido pedido) {
-        log.info("[CORREO] Para {}: recibimos tu pedido {} por ${}", pedido.getUsuario().getCorreo(),
-                pedido.getCodigo(), pedido.getTotal());
-    }
-
-    /** SMS y WhatsApp cuando el barista marca el pedido como LISTO. */
-    public void pedidoListo(Pedido pedido) {
-        log.info("[SMS + WHATSAPP] Para {}: tu pedido {} está listo para recoger",
-                pedido.getUsuario().getTelefono(), pedido.getCodigo());
+        String para = usuario.getCorreo();
+        String html = PlantillasCorreo.codigoVerificacion(usuario.getNombre(), codigo);
+        despuesDelCommit(() -> canales.correo(para, "Tu código de verificación de Taza Ideal", html));
     }
 
     /** Correo con el enlace para restablecer la contrasena. */
     public void enviarRecuperacion(Usuario usuario, String enlace) {
-        log.info("[CORREO] Para {}: restablece tu contraseña en {}", usuario.getCorreo(), enlace);
+        String para = usuario.getCorreo();
+        String html = PlantillasCorreo.recuperacion(usuario.getNombre(), enlace);
+        despuesDelCommit(() -> canales.correo(para, "Restablece tu contraseña de Taza Ideal", html));
+    }
+
+    /** Correo de confirmacion cuando el cliente hace un pedido. */
+    public void pedidoRecibido(Pedido pedido) {
+        String para = pedido.getUsuario().getCorreo();
+        List<PlantillasCorreo.Linea> lineas = pedido.getDetalles().stream()
+                .map(d -> new PlantillasCorreo.Linea(d.getProducto().getNombre(), d.getCantidad(), d.getSubtotal()))
+                .toList();
+        String html = PlantillasCorreo.pedidoRecibido(pedido.getUsuario().getNombre(), pedido.getCodigo(),
+                lineas, pedido.getTotal());
+        String asunto = "Recibimos tu pedido " + pedido.getCodigo();
+        despuesDelCommit(() -> canales.correo(para, asunto, html));
+    }
+
+    /** SMS y WhatsApp cuando el barista marca el pedido como LISTO. */
+    public void pedidoListo(Pedido pedido) {
+        String telefono = pedido.getUsuario().getTelefono();
+        String texto = "Taza Ideal: " + pedido.getUsuario().getNombre().split(" ")[0]
+                + ", tu pedido " + pedido.getCodigo() + " está listo. ¡Pasa a recogerlo!";
+        despuesDelCommit(() -> {
+            canales.sms(telefono, texto);
+            canales.whatsapp(telefono, texto);
+        });
+    }
+
+    private static void despuesDelCommit(Runnable accion) {
+        if (TransactionSynchronizationManager.isSynchronizationActive()) {
+            TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+                @Override
+                public void afterCommit() {
+                    accion.run();
+                }
+            });
+        } else {
+            accion.run();
+        }
     }
 }
