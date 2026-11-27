@@ -1,0 +1,28 @@
+info:
+  name: Pedidos Barista
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{baseUrl}}/barista/pedidos?estado=&q=&fecha="
+  params:
+    - name: estado
+      value: ""
+      type: query
+    - name: q
+      value: ""
+      type: query
+    - name: fecha
+      value: ""
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

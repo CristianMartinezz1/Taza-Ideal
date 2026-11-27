@@ -1,0 +1,5 @@
+name: Produccion
+variables:
+  - name: baseUrl
+    value: https://tazaideal.online/api
+    description: ""
