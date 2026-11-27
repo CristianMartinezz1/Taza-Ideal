@@ -19,6 +19,17 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
     boolean existsByCategoriaId(Long categoriaId);
 
+    /** true si el producto aparece en algun pedido o resultado de encuesta (no se puede borrar). */
+    @Query("""
+            SELECT (COUNT(d) > 0) FROM DetallePedido d WHERE d.producto.id = :id
+            """)
+    boolean tienePedidos(@Param("id") Long id);
+
+    @Query("""
+            SELECT (COUNT(r) > 0) FROM ResultadoEncuesta r WHERE r.producto.id = :id
+            """)
+    boolean tieneResultadosEncuesta(@Param("id") Long id);
+
     /** Producto con su categoria y sus etiquetas en una sola consulta. */
     @EntityGraph(attributePaths = {"categoria", "etiquetas"})
     Optional<Producto> findConDetalleById(Long id);
