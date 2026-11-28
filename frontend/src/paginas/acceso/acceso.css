@@ -224,3 +224,15 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+/* Mensaje de exito al restablecer la contrasena */
+.restablecer-exito {
+  margin-top: 1rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radio-control);
+  background-color: rgba(46, 125, 79, 0.14);
+  border: 1px solid var(--verde);
+  color: var(--verde);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
