@@ -466,3 +466,44 @@
   background-color: var(--rojo);
   border-color: var(--rojo);
 }
+/* NAVBAR Y TABLA EN MOVIL (375 px) */
+@media (max-width: 640px) {
+  .navbar-contenedor {
+    gap: 0.6rem;
+    padding: 0.6rem 0.75rem;
+  }
+
+  /* Los enlaces pasan a su propia fila y se desplazan de lado si no caben */
+  .navbar-enlaces {
+    order: 3;
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .navbar-enlace {
+    white-space: nowrap;
+  }
+
+  .navbar-usuario {
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  /* Nombre y correo se ven en el perfil; aqui solo estorban */
+  .navbar-datos {
+    display: none;
+  }
+
+  .navbar-btn-salir {
+    white-space: nowrap;
+  }
+
+  .tabla th,
+  .tabla td {
+    padding: 0.6rem 0.7rem;
+    white-space: nowrap;
+  }
+}
