@@ -49,12 +49,20 @@ public class NotificacionService {
         despuesDelCommit(() -> canales.correo(para, asunto, html));
     }
 
-    /** SMS y WhatsApp cuando el barista marca el pedido como LISTO. */
+    /**
+     * Correo, SMS y WhatsApp cuando el barista marca el pedido como LISTO.
+     * El correo siempre se manda: asi el cliente se entera aunque fallen SMS o WhatsApp.
+     */
     public void pedidoListo(Pedido pedido) {
+        String correo = pedido.getUsuario().getCorreo();
         String telefono = pedido.getUsuario().getTelefono();
-        String texto = "Taza Ideal: " + pedido.getUsuario().getNombre().split(" ")[0]
+        String nombre = pedido.getUsuario().getNombre();
+        String texto = "Taza Ideal: " + nombre.split(" ")[0]
                 + ", tu pedido " + pedido.getCodigo() + " está listo. ¡Pasa a recogerlo!";
+        String html = PlantillasCorreo.pedidoListo(nombre, pedido.getCodigo());
+        String asunto = "Tu pedido " + pedido.getCodigo() + " está listo";
         despuesDelCommit(() -> {
+            canales.correo(correo, asunto, html);
             canales.sms(telefono, texto);
             canales.whatsapp(telefono, texto);
         });

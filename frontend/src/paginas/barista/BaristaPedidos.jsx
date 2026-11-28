@@ -85,7 +85,7 @@ export default function BaristaPedidos() {
       await cliente.patch(`/barista/pedidos/${pedido.id}/estado`, { estado: nuevo });
       setMsg(
         nuevo === "LISTO"
-          ? `${pedido.codigo} está listo. Avisamos a ${pedido.cliente?.nombre || "el cliente"} por SMS y WhatsApp.`
+          ? `${pedido.codigo} está listo. Avisamos a ${pedido.cliente?.nombre || "el cliente"} por correo, SMS y WhatsApp.`
           : `${pedido.codigo} actualizado a ${ESTADOS[nuevo]}.`
       );
       cargar(pagina);
@@ -223,7 +223,7 @@ export default function BaristaPedidos() {
         <Modal
           abierto={Boolean(porMarcarListo)}
           titulo={`¿Marcar ${porMarcarListo?.codigo || ""} como listo?`}
-          mensaje={`Se avisará a ${porMarcarListo?.cliente?.nombre || "el cliente"} por SMS y WhatsApp que ya puede recoger su pedido.`}
+          mensaje={`Se avisará a ${porMarcarListo?.cliente?.nombre || "el cliente"} por correo, SMS y WhatsApp que ya puede recoger su pedido.`}
           textoConfirmar="Sí, está listo"
           alConfirmar={() => {
             const p = porMarcarListo;
