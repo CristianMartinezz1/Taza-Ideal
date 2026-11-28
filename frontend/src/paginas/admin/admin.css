@@ -179,3 +179,40 @@
   font-size: 0.85rem;
   margin-bottom: 1rem;
 }
+
+/* === RESPONSIVO MÓVIL (375 px) === */
+@media (max-width: 480px) {
+  .admin-contenedor {
+    padding: 1.15rem 0.75rem 2.25rem;
+  }
+
+  .admin-encabezado {
+    align-items: stretch;
+  }
+
+  .admin-input,
+  .admin-select {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .admin-resumen {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+  }
+
+  .admin-tarjeta-stat {
+    padding: 0.8rem 0.9rem;
+  }
+
+  .admin-form-caja,
+  .admin-form-centrado {
+    padding: 1.15rem 1rem;
+  }
+
+  .admin-form-pie,
+  .admin-form-botones {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+}
