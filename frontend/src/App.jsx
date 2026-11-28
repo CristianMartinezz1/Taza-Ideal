@@ -9,6 +9,12 @@ import Terminos from "./paginas/acceso/Terminos";
 import Inicio from "./paginas/cliente/Inicio";
 import Encuesta from "./paginas/cliente/Encuesta";
 import Resultado from "./paginas/cliente/Resultado";
+import AdminUsuarios from "./paginas/admin/AdminUsuarios";
+import AdminPedidos from "./paginas/admin/AdminPedidos";
+import AdminProductos from "./paginas/admin/AdminProductos";
+import AdminProductoForm from "./paginas/admin/AdminProductoForm";
+import AdminCategorias from "./paginas/admin/AdminCategorias";
+import AdminCategoriaForm from "./paginas/admin/AdminCategoriaForm";
 import Menu from "./paginas/cliente/Menu";
 import Carrito from "./paginas/cliente/Carrito";
 import PedidoConfirmado from "./paginas/cliente/PedidoConfirmado";
@@ -28,12 +34,20 @@ export default function App() {
           <Route path="/verificar-correo" element={<VerificarCorreo />} />
           <Route path="/terminos" element={<Terminos />} />
 
-          {/* Grupo 2: Cliente - Inicio y Encuesta */}
-         <Route path="/inicio" element={<RutaProtegida rolesPermitidos={["CLIENTE"]}> <Inicio /></RutaProtegida>  }/>
-         <Route path="/encuesta" element={<RutaProtegida rolesPermitidos={["CLIENTE"]}><Encuesta /></RutaProtegida>} />
-         <Route path="/resultado" element={<RutaProtegida rolesPermitidos={["CLIENTE"]}><Resultado /></RutaProtegida>} />
+          <Route path="/inicio" element={<RutaProtegida rolesPermitidos={["CLIENTE"]}><Inicio /></RutaProtegida>} />
+          <Route path="/encuesta" element={<RutaProtegida rolesPermitidos={["CLIENTE"]}><Encuesta /></RutaProtegida>} />
+          <Route path="/resultado" element={<RutaProtegida rolesPermitidos={["CLIENTE"]}><Resultado /></RutaProtegida>} />
 
-         {/* Grupo 3: Cliente - Compra */}
+          <Route path="/admin/usuarios" element={<RutaProtegida rolesPermitidos={["ADMIN"]}><AdminUsuarios /></RutaProtegida>} />
+          <Route path="/admin/pedidos" element={<RutaProtegida rolesPermitidos={["ADMIN"]}><AdminPedidos /></RutaProtegida>} />
+          <Route path="/admin/productos" element={<RutaProtegida rolesPermitidos={["ADMIN"]}><AdminProductos /></RutaProtegida>} />
+          <Route path="/admin/productos/nuevo" element={<RutaProtegida rolesPermitidos={["ADMIN"]}><AdminProductoForm /></RutaProtegida>} />
+          <Route path="/admin/productos/:id" element={<RutaProtegida rolesPermitidos={["ADMIN"]}><AdminProductoForm /></RutaProtegida>} />
+          <Route path="/admin/categorias" element={<RutaProtegida rolesPermitidos={["ADMIN"]}><AdminCategorias /></RutaProtegida>} />
+          <Route path="/admin/categorias/nueva" element={<RutaProtegida rolesPermitidos={["ADMIN"]}><AdminCategoriaForm /></RutaProtegida>} />
+          <Route path="/admin/categorias/:id" element={<RutaProtegida rolesPermitidos={["ADMIN"]}><AdminCategoriaForm /></RutaProtegida>} />
+
+          {/* Grupo 3: Cliente - Compra */}
           <Route path="/menu" element={<RutaProtegida rolesPermitidos={["CLIENTE"]}><Menu /></RutaProtegida>} />
           <Route path="/carrito" element={<RutaProtegida rolesPermitidos={["CLIENTE"]}><Carrito /></RutaProtegida>} />
           <Route path="/pedido-confirmado" element={<RutaProtegida rolesPermitidos={["CLIENTE"]}><PedidoConfirmado /></RutaProtegida>} />
@@ -43,6 +57,6 @@ export default function App() {
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>
-    </AuthProvider>
-  );
-}
+     </AuthProvider>
+     );
+     }
