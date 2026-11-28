@@ -32,13 +32,6 @@ export default function Login(){
     return Object.keys(nuevosErrores).length === 0;
   }
 
-  function llenarCuenta(correoDemo, claveDemo) {
-    setCorreo(correoDemo);
-    setContrasena(claveDemo);
-    setErrores({});
-    setErrorGeneral("");
-  }
-
   async function enviarFormulario(e) {
     e.preventDefault();
     setErrorGeneral("");
@@ -150,41 +143,6 @@ export default function Login(){
               Regístrate
             </Link>
           </p>
-
-          <div className="acceso-rapido">
-            <span className="acceso-rapido-texto">
-              Acceso rápido para el prototipo
-            </span>
-            <div className="acceso-rapido-fila">
-              <button
-              type="button"
-             className="acceso-rapido-btn"
-             onClick={() =>
-               llenarCuenta("lucia.hernandez@example.com", "Cliente#2026")
-                }
-              >
-                Cliente
-              </button>
-              <button
-             type="button"
-             className="acceso-rapido-btn"
-             onClick={() =>
-               llenarCuenta("andres@tazaideal.com", "Barista#2026")
-                }
-              >
-                Barista
-              </button>
-              <button
-                type="button"
-                className="acceso-rapido-btn"
-                onClick={() =>
-                  llenarCuenta("admin@tazaideal.com", "Admin#2026")
-                }
-              >
-                Admin
-              </button>
-        </div>
-    </div>
         </div>
       </main>
       </div>
