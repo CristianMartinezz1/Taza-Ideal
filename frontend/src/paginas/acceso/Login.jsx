@@ -4,7 +4,6 @@ import cliente from "../../api/cliente";
 import { AuthContext } from "../../context/AuthContext";
 import Campo from "../../componentes/Campo";
 import Boton from "../../componentes/Boton";
-import MensajeError from "../../componentes/MensajeError";
 import "./acceso.css";
 import Logo from "../../componentes/Logo";
 
@@ -90,7 +89,6 @@ export default function Login(){
             Entra con tu correo electrónico y contraseña.
           </p>
 
-          {errorGeneral && <MensajeError mensaje={errorGeneral} />}
 
           <form onSubmit={enviarFormulario} noValidate>
             <Campo
@@ -115,9 +113,10 @@ export default function Login(){
               onChange={(e) => {
              setContrasena(e.target.value);
              if (errores.contrasena) setErrores({ ...errores, contrasena: "" });
+             if (errorGeneral) setErrorGeneral("");
               }}
               placeholder="••••••••"
-              error={errores.contrasena}
+              error={errores.contrasena || errorGeneral}
               requerido
             />
 
