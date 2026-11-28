@@ -1100,3 +1100,19 @@
   gap: 0.75rem;
   margin-top: 1.25rem;
 }
+/* Avisos de la confirmacion del pedido */
+.confirmado-nota {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #7a6a5d;
+  background: #f3e7d6;
+  border-radius: 4px;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+
+.confirmado-nota-enviado {
+  color: #2e7d4f;
+  background: #e3f1e8;
+}
+
