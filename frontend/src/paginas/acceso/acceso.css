@@ -203,4 +203,31 @@
   font-size: 0.85rem;
   font-weight: 500;
 }
+/* === RESPONSIVO MÓVIL (375 px) === */
+@media (max-width: 480px) {
+  .acceso-marca {
+    padding: 1.25rem 1rem;
+  }
 
+  .acceso-marca h1 {
+    font-size: 1.75rem;
+  }
+
+  .acceso-lado-form {
+    padding: 1rem 0.75rem;
+  }
+
+  .acceso-tarjeta {
+    padding: 1.35rem 1.1rem;
+  }
+
+  .otp-fila {
+    gap: 0.3rem;
+  }
+
+  .otp-casilla {
+    width: 2.35rem;
+    height: 2.75rem;
+    font-size: 1.1rem;
+  }
+}
