@@ -55,7 +55,7 @@ export default function PedidoConfirmado() {
               <span>
                 <strong>Correo electrónico</strong> {usuario?.correo}
               </span>
-              <span className="confirmado-nota confirmado-nota-enviado">Confirmación enviada</span>
+              <span className="confirmado-nota confirmado-nota-enviado">Confirmación enviada · y otro aviso cuando esté listo</span>
             </div>
 
             <div className="confirmado-canal">

@@ -46,7 +46,16 @@ final class PlantillasCorreo {
                         + "<tr><td style=\"padding:8px 0;border-top:1px solid #e6d5c1;font-weight:700\">Total</td>"
                         + "<td style=\"padding:8px 0;border-top:1px solid #e6d5c1;text-align:right;font-weight:700\">$"
                         + total + " MXN</td></tr></table>"
-                        + "<p>Te avisaremos por SMS y WhatsApp cuando esté listo para recoger.</p>");
+                        + "<p>Te avisaremos por correo, SMS y WhatsApp cuando esté listo para recoger.</p>");
+    }
+
+    static String pedidoListo(String nombre, String codigo) {
+        return marco("¡Tu pedido " + e(codigo) + " está listo!",
+                "<p>Hola " + e(nombre) + ", tu pedido ya está listo en barra.</p>"
+                        + "<p style=\"font-size:18px;font-weight:700;color:#6F4E37;margin:16px 0\">"
+                        + "Pasa a recogerlo, no necesitas hacer fila.</p>"
+                        + "<p style=\"color:#7a6a5d\">Muestra el código <strong>" + e(codigo)
+                        + "</strong> al barista. ¡Gracias por elegir Taza Ideal!</p>");
     }
 
     private static String marco(String titulo, String contenido) {
