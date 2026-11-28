@@ -108,39 +108,7 @@
   margin: 1rem 0 0;
 }
 
-.acceso-rapido {
-  margin-top: 1.2rem;
-  padding-top: 0.9rem;
-  border-top: 1px solid #e6dcd0;
-}
 
-.acceso-rapido-texto {
-  display: block;
-  text-align: center;
-  font-size: 0.75rem;
-  color: #7d6d61;
-  margin-bottom: 0.5rem;
-}
-
-.acceso-rapido-fila {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-}
-
-.acceso-rapido-btn {
-  background-color: var(--crema);
-  border: 1px solid #d5c3b0;
-  border-radius: var(--radio-control);
-  padding: 0.45rem;
-  font-size: 0.82rem;
-  color: var(--chocolate);
-  cursor: pointer;
-}
-
-.acceso-rapido-btn:hover {
-  background-color: var(--crema-oscura);
-}
 
 @media (max-width: 800px) {
   .acceso-contenedor {
