@@ -1116,3 +1116,74 @@
   background: #e3f1e8;
 }
 
+/* === RESPONSIVO MÓVIL (375 px) === */
+@media (max-width: 480px) {
+  .cliente-contenedor {
+    padding: 1.25rem 0.75rem 2.25rem;
+  }
+
+  .inicio-banner {
+    padding: 1.25rem;
+  }
+
+  .inicio-pedido-info {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .encuesta-contenedor {
+    padding: 1.25rem 0.75rem 2rem;
+  }
+
+  .encuesta-acciones {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .resultado-principal {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .resultado-acciones {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .carrito-lista {
+    padding: 0.25rem 0.85rem;
+  }
+
+  .carrito-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .carrito-item-der {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .confirmado-caja {
+    margin: 1rem auto;
+    padding: 1.35rem 1rem;
+  }
+
+  .confirmado-canal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .confirmado-nota {
+    white-space: normal;
+  }
+
+  .pedidos-buscador,
+  .pedidos-select {
+    min-width: 100%;
+  }
+
+  .perfil-botones {
+    flex-direction: column;
+  }
+}
