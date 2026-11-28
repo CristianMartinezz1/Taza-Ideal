@@ -65,7 +65,9 @@ if [ -f /tmp/taza-ideal-web.tgz ]; then
 fi
 rm -f /tmp/taza-ideal.jar /tmp/taza-ideal-web.tgz
 sleep 15
-curl -s -o /dev/null -w "API /api/categorias -> HTTP %{http_code}\n" http://127.0.0.1:8085/api/categorias
+CODIGO=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8085/api/categorias)
+echo "API /api/categorias -> HTTP $CODIGO"
 '@
-ssh -t $Servidor ($remoto -replace "`r", "")
+# El script se manda por la entrada estandar para que PowerShell no le quite las comillas
+($remoto -replace "`r", "") | ssh $Servidor "bash -s"
 Write-Host "Listo: https://tazaideal.online (main @ $commit)" -ForegroundColor Green
