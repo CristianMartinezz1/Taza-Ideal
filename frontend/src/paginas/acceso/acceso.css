@@ -1,0 +1,226 @@
+.acceso-contenedor {
+  display: flex;
+  min-height: 100vh;
+  font-family: var(--font-principal);
+}
+
+.acceso-marca {
+  width: 42%;
+  background-color: var(--cafe);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.acceso-marca-caja {
+  max-width: 360px;
+}
+
+.acceso-logo-circulo {
+  margin-bottom: 1.25rem;
+}
+
+.acceso-logo-circulo img {
+  width: 68px;
+  height: 68px;
+  display: block;
+}
+
+.acceso-marca h1 {
+  margin: 0 0 0.4rem;
+  font-size: 2.2rem;
+  color: #ffffff;
+  text-align: left;
+}
+
+.acceso-subtitulo {
+  margin: 0 0 0.9rem;
+  color: var(--crema-oscura);
+  font-weight: 500;
+  text-align: left;
+}
+
+.acceso-descripcion {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--crema);
+}
+
+.acceso-lado-form {
+  flex: 1;
+  background-image: linear-gradient(rgba(43, 29, 20, 0.25), rgba(43, 29, 20, 0.25)),
+    url('/img/fondo-acceso.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.acceso-tarjeta {
+  width: 100%;
+  max-width: 420px;
+  background-color: #ffffff;
+  border-radius: var(--radio-tarjeta);
+  padding: 2rem;
+  box-shadow: var(--sombra-suave);
+  color: var(--chocolate);
+}
+
+.acceso-tarjeta h2 {
+  margin: 0 0 0.3rem;
+  font-size: 1.4rem;
+}
+
+.acceso-tarjeta-sub {
+  margin: 0 0 1.25rem;
+  font-size: 0.85rem;
+  color: #6b5b50;
+}
+
+.acceso-enlace-derecha {
+  text-align: right;
+  margin: -0.35rem 0 0.9rem;
+}
+
+.acceso-link {
+  color: var(--verde-azulado);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.acceso-link:hover {
+  text-decoration: underline;
+}
+
+.acceso-btn-lleno {
+  width: 100%;
+}
+
+.acceso-pie {
+  text-align: center;
+  font-size: 0.85rem;
+  margin: 1rem 0 0;
+}
+
+.acceso-rapido {
+  margin-top: 1.2rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid #e6dcd0;
+}
+
+.acceso-rapido-texto {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #7d6d61;
+  margin-bottom: 0.5rem;
+}
+
+.acceso-rapido-fila {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.acceso-rapido-btn {
+  background-color: var(--crema);
+  border: 1px solid #d5c3b0;
+  border-radius: var(--radio-control);
+  padding: 0.45rem;
+  font-size: 0.82rem;
+  color: var(--chocolate);
+  cursor: pointer;
+}
+
+.acceso-rapido-btn:hover {
+  background-color: var(--crema-oscura);
+}
+
+@media (max-width: 800px) {
+  .acceso-contenedor {
+    flex-direction: column;
+  }
+  .acceso-marca {
+    width: 100%;
+    padding: 1.75rem;
+  }
+}
+
+/* === VERIFICAR CORREO (6 DÍGITOS) === */
+.otp-fila {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.otp-casilla {
+  width: 2.75rem;
+  height: 3.1rem;
+  text-align: center;
+  font-family: var(--font-principal);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--chocolate);
+  background-color: #ffffff;
+  border: 1px solid rgba(43, 29, 20, 0.25);
+  border-radius: var(--radio-control);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.otp-casilla:focus {
+  border-color: var(--cafe);
+  box-shadow: 0 0 0 2px rgba(111, 78, 55, 0.15);
+}
+
+.otp-casilla-error {
+  border-color: var(--rojo);
+}
+
+.verif-error-texto {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--rojo);
+  margin: 0 0 1rem;
+  text-align: left;
+}
+
+.verif-aviso-verde {
+  margin-top: 1rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radio-control);
+  background-color: rgba(46, 125, 79, 0.14);
+  border: 1px solid rgba(46, 125, 79, 0.35);
+  color: var(--verde);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.verif-btn-reenviar {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 0.85rem;
+  font-family: var(--font-principal);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--verde-azulado);
+  cursor: pointer;
+}
+
+.verif-btn-reenviar:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.verif-btn-reenviar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
