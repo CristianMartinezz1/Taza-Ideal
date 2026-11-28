@@ -4,6 +4,7 @@ import RutaProtegida from "./componentes/RutaProtegida";
 import Login from "./paginas/acceso/Login";
 import Registro from "./paginas/acceso/Registro";
 import Recuperar from "./paginas/acceso/Recuperar";
+import Restablecer from "./paginas/acceso/Restablecer";
 import VerificarCorreo from "./paginas/acceso/VerificarCorreo";
 import Terminos from "./paginas/acceso/Terminos";
 import Inicio from "./paginas/cliente/Inicio";
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/recuperar" element={<Recuperar />} />
+<Route path="/restablecer" element={<Restablecer />} />
           <Route path="/verificar" element={<VerificarCorreo />} />
           <Route path="/verificar-correo" element={<VerificarCorreo />} />
           <Route path="/terminos" element={<Terminos />} />
