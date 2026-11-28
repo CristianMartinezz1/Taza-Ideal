@@ -68,6 +68,8 @@ sleep 15
 CODIGO=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8085/api/categorias)
 echo "API /api/categorias -> HTTP $CODIGO"
 '@
-# El script se manda por la entrada estandar para que PowerShell no le quite las comillas
+# El script se manda por la entrada estandar para que PowerShell no le quite las comillas.
+# UTF-8 sin BOM: con BOM bash recibe un caracter invisible al inicio ("set: command not found").
+$OutputEncoding = New-Object System.Text.UTF8Encoding $false
 ($remoto -replace "`r", "") | ssh $Servidor "bash -s"
 Write-Host "Listo: https://tazaideal.online (main @ $commit)" -ForegroundColor Green
