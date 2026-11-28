@@ -59,17 +59,19 @@ export default function Resultado() {
     96;
 
   const agregarYIrAlCarrito = (prod) => {
-    if (!prod?.id) {
+    // La recomendacion de la API trae productoId (no id)
+    const idProducto = prod?.productoId ?? prod?.id;
+    if (!idProducto) {
       navigate("/menu");
       return;
     }
     const carritoActual = JSON.parse(localStorage.getItem("carrito") || "[]");
-    const existente = carritoActual.find((item) => item.id === prod.id);
+    const existente = carritoActual.find((item) => item.id === idProducto);
     if (existente) {
       existente.cantidad += 1;
     } else {
       carritoActual.push({
-        id: prod.id,
+        id: idProducto,
         nombre: prod.nombre,
         precio: prod.precio,
         imagenUrl: prod.imagenUrl || prod.imagen,

@@ -32,7 +32,7 @@ export default function Menu() {
     setCargando(true);
     setError("");
     try {
-      const params = { page: pagina, size: 6, orden };
+      const params = { page: pagina, size: 6, sort: orden };
       if (busqueda.trim()) params.q = busqueda.trim();
       if (categoriaId) params.categoriaId = categoriaId;
 

@@ -121,7 +121,7 @@ export default function AdminPedidos() {
          <Modal
           abierto={Boolean(detalle)}
           titulo={`Detalle ${detalle?.codigo || ""} — ${detalle?.cliente?.nombre || ""}`}
-          mensaje={detalle?.items?.map((i) => `${i.cantidad}x ${i.nombreProducto || i.producto?.nombre || "Bebida"}`).join(" • ") || detalle?.notas || "Sin detalles adicionales."}
+          mensaje={detalle?.items?.map((i) => `${i.cantidad}x ${i.producto || "Bebida"}${i.tamano ? ` (${i.tamano})` : ""}`).join(" • ") || detalle?.notas || "Sin detalles adicionales."}
           textoConfirmar="Cerrar"
           alConfirmar={() => setDetalle(null)}
           alCancelar={() => setDetalle(null)}

@@ -20,6 +20,7 @@ import Carrito from "./paginas/cliente/Carrito";
 import PedidoConfirmado from "./paginas/cliente/PedidoConfirmado";
 import MisPedidos from "./paginas/cliente/MisPedidos";
 import Perfil from "./paginas/cliente/Perfil";
+import BaristaPedidos from "./paginas/barista/BaristaPedidos";
 
 export default function App() {
   return (
@@ -52,7 +53,8 @@ export default function App() {
           <Route path="/carrito" element={<RutaProtegida rolesPermitidos={["CLIENTE"]}><Carrito /></RutaProtegida>} />
           <Route path="/pedido-confirmado" element={<RutaProtegida rolesPermitidos={["CLIENTE"]}><PedidoConfirmado /></RutaProtegida>} />
           <Route path="/mis-pedidos" element={<RutaProtegida rolesPermitidos={["CLIENTE"]}><MisPedidos /></RutaProtegida>} />
-          <Route path="/perfil" element={<RutaProtegida><Perfil /></RutaProtegida>} />
+          <Route path="/barista/pedidos" element={<RutaProtegida rolesPermitidos={["BARISTA", "ADMIN"]}><BaristaPedidos /></RutaProtegida>} />
+<Route path="/perfil" element={<RutaProtegida><Perfil /></RutaProtegida>} />
 
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>

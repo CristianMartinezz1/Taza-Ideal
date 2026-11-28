@@ -3,11 +3,14 @@ import "./componentes.css";
 
 export default function Modal({abierto,titulo,mensaje,children,textoConfirmar = "Confirmar",
   varianteConfirmar = "primario", // primario | peligro | acento
-  alCerrar,alConfirmar,cargando = false,}) {
+  alCerrar,alCancelar,alConfirmar,cargando = false,}) {
   if (!abierto) return null;
 
+  // Las pantallas usan alCancelar o alCerrar: cualquiera de los dos cierra el modal
+  const cerrar = alCerrar || alCancelar;
+
   return (
-    <div className="modal-fondo" onClick={alCerrar}>
+    <div className="modal-fondo" onClick={cerrar}>
       <div className="modal-caja" onClick={(e) => e.stopPropagation()}>
         {titulo && <h3 className="modal-titulo">{titulo}</h3>}
         {mensaje && <p className="modal-mensaje">{mensaje}</p>}
@@ -15,7 +18,7 @@ export default function Modal({abierto,titulo,mensaje,children,textoConfirmar = 
 
         {alConfirmar && (
         <div className="modal-acciones">
-        <Boton variante="secundario" onClick={alCerrar} deshabilitado={cargando}>
+        <Boton variante="secundario" onClick={cerrar} deshabilitado={cargando}>
               Cancelar
         </Boton>
         <Boton

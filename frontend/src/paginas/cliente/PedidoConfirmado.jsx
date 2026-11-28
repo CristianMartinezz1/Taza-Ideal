@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import Navbar from "../../componentes/Navbar";
-import ChipEstado from "../../componentes/ChipEstado";
 import Boton from "../../componentes/Boton";
 import "./cliente.css";
 
@@ -49,30 +48,23 @@ export default function PedidoConfirmado() {
             Pasa a recogerlo a las {formatearHora(pedido.horaRecogida)}. No necesitas hacer fila.
           </p>
 
-          <p className="confirmado-aviso-titulo">Te enviamos un aviso por:</p>
+          <p className="confirmado-aviso-titulo">Cómo te avisamos:</p>
 
-             <div className="confirmado-canales">
-               <div className="confirmado-canal">
+          <div className="confirmado-canales">
+            <div className="confirmado-canal">
               <span>
                 <strong>Correo electrónico</strong> {usuario?.correo}
               </span>
-              <ChipEstado estado="LISTO" />
-               </div>
-
-               <div className="confirmado-canal">
-              <span>
-                <strong>SMS</strong> {telefonoCliente}
-              </span>
-              <ChipEstado estado="LISTO" />
-              </div>
-
-              <div className="confirmado-canal">
-              <span>
-                <strong>WhatsApp</strong> {telefonoCliente}
-              </span>
-              <ChipEstado estado="LISTO" />
+              <span className="confirmado-nota confirmado-nota-enviado">Confirmación enviada</span>
             </div>
+
+            <div className="confirmado-canal">
+              <span>
+                <strong>SMS y WhatsApp</strong> {telefonoCliente}
+              </span>
+              <span className="confirmado-nota">Cuando tu pedido esté listo</span>
             </div>
+          </div>
  
              <div className="confirmado-acciones">
             <Boton
